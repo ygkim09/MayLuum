@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메이룸 (MayLuum) | 30년 기술 통찰력으로 의료기기의 성공 확률을 설계합니다</title>
+    <meta name="description" content="의료기기 인허가 컨설팅, 개발 전략 설계, 정부 R&D 컨설팅 - 30년 기술 리더십으로 메디테크의 성공을 함께합니다.">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cormorant+Garamond:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-primary: #0A1F44;
+            --navy-deep: #051229;
+            --teal-accent: #1A9B8E;
+            --teal-light: #2BC4B4;
+            --white: #FFFFFF;
+            --off-white: #F8FAFB;
+            --gray-100: #E8ECF0;
+            --gray-300: #B8C5D0;
+            --gray-600: #5A6B7D;
+            --gold-accent: #D4AF37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, sans-serif;
+            color: var(--navy-primary);
+            background: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-100);
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled {
+            box-shadow: 0 4px 20px rgba(10, 31, 68, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 85px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 0.85;
+        }
+
+        .logo:hover img {
+            transform: translateY(-2px);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 45px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--navy-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--teal-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--teal-accent);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--teal-accent);
+        }
+
+        .cta-button:hover {
+            background: var(--teal-light);
+            border-color: var(--teal-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 155, 142, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-primary) 100%);
+            overflow: hidden;
+            padding-top: 85px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(26, 155, 142, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            opacity: 0.6;
+        }
+
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(26, 155, 142, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(26, 155, 142, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        .hero-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            color: var(--teal-light);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.3s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .hero-title {
+            font-size: 72px;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+
+        .hero-title span {
+            color: var(--teal-light);
+            display: block;
+            font-size: 64px;
+        }
+
+        .hero-description {
+            font-size: 20px;
+            color: var(--gray-100);
+            line-height: 1.8;
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.7s forwards;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.9s forwards;
+        }
+
+        .hero-cta-primary {
+            background: var(--teal-accent);
+            color: var(--white);
+            padding: 18px 45px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 17px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid var(--teal-accent);
+        }
+
+        .hero-cta-primary:hover {
+            background: var(--teal-light);
+            border-color: var(--teal-light);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(26, 155, 142, 0.4);
+        }
+
+        .hero-cta-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 18px 45px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 17px;
+            text-decoration: none;
+            border: 2px solid var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta-secondary:hover {
+            background: var(--white);
+            color: var(--navy-primary);
+            transform: translateY(-3px);
+        }
+
+        .trust-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.1s forwards;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--white);
+        }
+
+        .trust-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--teal-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .trust-icon::after {
+            content: '✓';
+            color: var(--teal-light);
+            font-weight: bold;
+        }
+
+        /* Section Common Styles */
+        section {
+            padding: 120px 40px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            color: var(--teal-accent);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--navy-primary);
+            line-height: 1.3;
+            margin-bottom: 25px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--gray-600);
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        /* Pain Points Section */
+        .pain-points {
+            background: var(--off-white);
+            position: relative;
+        }
+
+        .pain-points::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gray-100), transparent);
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 60px 0 50px;
+        }
+
+        .pain-item {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--teal-accent);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .pain-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .pain-item::before {
+            content: '✗';
+            color: var(--teal-accent);
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        .solution-message {
+            background: var(--navy-primary);
+            color: var(--white);
+            padding: 50px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.6;
+            box-shadow: 0 12px 40px rgba(10, 31, 68, 0.2);
+        }
+
+        .solution-message span {
+            color: var(--teal-light);
+        }
+
+        /* Solutions Section */
+        .solutions {
+            background: var(--white);
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .solution-card {
+            background: var(--white);
+            border: 2px solid var(--gray-100);
+            border-radius: 16px;
+            padding: 45px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--teal-accent), var(--teal-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .solution-card:hover {
+            border-color: var(--teal-accent);
+            box-shadow: 0 16px 48px rgba(26, 155, 142, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .solution-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .solution-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 64px;
+            font-weight: 300;
+            color: var(--gray-100);
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        .solution-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--navy-primary);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .solution-list {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .solution-list li {
+            padding: 12px 0;
+            color: var(--gray-600);
+            position: relative;
+            padding-left: 28px;
+            font-size: 15px;
+        }
+
+        .solution-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--teal-accent);
+            font-weight: bold;
+        }
+
+        /* Expertise Section */
+        .expertise {
+            background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%);
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .expertise-card {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(10, 31, 68, 0.06);
+            position: relative;
+            border: 1px solid var(--gray-100);
+            transition: all 0.3s ease;
+        }
+
+        .expertise-card:hover {
+            box-shadow: 0 16px 56px rgba(10, 31, 68, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .expertise-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--teal-accent), var(--teal-light));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            box-shadow: 0 8px 24px rgba(26, 155, 142, 0.25);
+        }
+
+        .expertise-card h3 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--navy-primary);
+            margin-bottom: 20px;
+        }
+
+        .expertise-card p {
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .expertise-examples {
+            background: var(--off-white);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .expertise-examples h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--teal-accent);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .expertise-examples ul {
+            list-style: none;
+        }
+
+        .expertise-examples li {
+            padding: 8px 0;
+            color: var(--gray-600);
+            font-size: 14px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .expertise-examples li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--teal-accent);
+            font-size: 18px;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: var(--navy-deep);
+            color: var(--white);
+        }
+
+        .portfolio .section-label {
+            color: var(--teal-light);
+        }
+
+        .portfolio .section-title {
+            color: var(--white);
+        }
+
+        .portfolio .section-description {
+            color: var(--gray-300);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+        }
+
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--teal-light);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            color: var(--teal-light);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-card h3 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--white);
+        }
+
+        .portfolio-achievements {
+            list-style: none;
+        }
+
+        .portfolio-achievements li {
+            padding: 10px 0;
+            color: var(--gray-300);
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .portfolio-achievements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--teal-light);
+            font-weight: bold;
+        }
+
+        /* Legacy Section */
+        .legacy {
+            background: var(--white);
+        }
+
+        .legacy-timeline {
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .legacy-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--teal-accent), var(--teal-light));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-period {
+            grid-column: 1;
+            grid-row: 1;
+            text-align: right;
+        }
+
+        .timeline-period {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--teal-accent);
+            line-height: 1;
+        }
+
+        .timeline-content {
+            background: var(--off-white);
+            padding: 40px;
+            border-radius: 16px;
+            border-left: 4px solid var(--teal-accent);
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .timeline-content li {
+            padding: 10px 0;
+            color: var(--gray-600);
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .timeline-content li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--teal-accent);
+        }
+
+        .legacy-message {
+            background: linear-gradient(135deg, var(--navy-primary), var(--navy-deep));
+            color: var(--white);
+            padding: 60px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 60px;
+            box-shadow: 0 16px 48px rgba(10, 31, 68, 0.2);
+        }
+
+        .legacy-message h3 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .legacy-message p {
+            font-size: 20px;
+            line-height: 1.8;
+            color: var(--gray-100);
+        }
+
+        /* Partnership Section */
+        .partnership {
+            background: linear-gradient(135deg, var(--teal-accent) 0%, var(--teal-light) 100%);
+            color: var(--white);
+        }
+
+        .partnership .section-label {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .partnership .section-title {
+            color: var(--white);
+        }
+
+        .partnership .section-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .partnership-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .partnership-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 45px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .partnership-box h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .partnership-box ul {
+            list-style: none;
+        }
+
+        .partnership-box li {
+            padding: 12px 0;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .partnership-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .partnership-policy {
+            background: var(--navy-deep);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 40px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* Insight Section */
+        .insight {
+            background: var(--off-white);
+        }
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+        }
+
+        .insight-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-100);
+        }
+
+        .insight-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px);
+        }
+
+        .insight-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--navy-primary), var(--teal-accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .insight-body {
+            padding: 35px;
+        }
+
+        .insight-card h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--navy-primary);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .insight-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--white);
+            padding: 120px 40px;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .contact-slogan {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy-primary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .contact-slogan span {
+            color: var(--teal-accent);
+        }
+
+        .contact-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: var(--off-white);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(10, 31, 68, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--navy-primary);
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--gray-100);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Noto Sans KR', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--teal-accent);
+            box-shadow: 0 0 0 3px rgba(26, 155, 142, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .form-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 20px;
+            background: var(--teal-accent);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .form-submit:hover {
+            background: var(--teal-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(26, 155, 142, 0.3);
+        }
+
+        .contact-info {
+            margin-top: 60px;
+            text-align: center;
+            padding: 40px;
+            background: var(--white);
+            border-radius: 16px;
+            border: 2px solid var(--gray-100);
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--navy-primary);
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .contact-detail {
+            font-size: 16px;
+            color: var(--gray-600);
+        }
+
+        .contact-detail strong {
+            color: var(--navy-primary);
+            font-weight: 700;
+        }
+
+        .security-notice {
+            background: var(--navy-primary);
+            color: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy-deep);
+            color: var(--white);
+            padding: 60px 40px 30px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            color: var(--gray-300);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .footer-links h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--teal-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: var(--gray-300);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-period {
+                grid-column: 1;
+                text-align: left;
+            }
+
+            .timeline-timeline::before {
+                left: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .nav-menu {
+                gap: 25px;
+                font-size: 14px;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-title span {
+                font-size: 42px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-form {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 24px;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-title span {
+                font-size: 32px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABLAAAAKACAYAAAC++ navigation logo will be embedded" alt="MayLuum" id="logo-img">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#legacy">The Legacy</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#solutions">Strategic Solutions</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#partnership">Partnership</a></li>
+                <li><a href="#insight">Insight</a></li>
+                <li><a href="#contact" class="cta-button">무료 기술 상담 신청</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-subtitle">Medical Device Strategic Consulting</div>
+                <h1 class="hero-title">
+                    30년 기술 통찰력
+                    <span>의료기기의 성공 확률을 설계합니다.</span>
+                </h1>
+                <p class="hero-description">
+                    세계 최초 스마트폰 개발부터 고위험 의료기기 인허가까지<br>
+                    메이룸은 기술과 규제를 연결하는 전략적 내비게이터입니다.
+                </p>
+                <div class="hero-ctas">
+                    <a href="#contact" class="hero-cta-primary">무료 기술 상담 신청</a>
+                    <a href="#partnership" class="hero-cta-secondary">파트너십 문의</a>
+                </div>
+                <div class="trust-bar">
+                    <div class="trust-item">
+                        <div class="trust-icon"></div>
+                        <span>30년 기술 리더십</span>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon"></div>
+                        <span>3등급 의료기기 개발 및 인허가</span>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon"></div>
+                        <span>국책 R&D 성공 수행</span>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon"></div>
+                        <span>글로벌 인증 대응 경험</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="pain-points">
+        <div class="container">
+            <div class="section-label">Problems We Solve</div>
+            <h2 class="section-title">이런 문제를 겪고 계십니까?</h2>
+            <div class="pain-grid">
+                <div class="pain-item">인허가 전략 부재</div>
+                <div class="pain-item">개발 완료 후 시험 실패</div>
+                <div class="pain-item">양산 원가 문제</div>
+                <div class="pain-item">정부 과제 선정 실패</div>
+                <div class="pain-item">RA 문서 작성 부담</div>
+                <div class="pain-item">기술 방향성 불확실</div>
+                <div class="pain-item">기간내 개발 및 개발 품질관리 실패</div>
+            </div>
+            <div class="solution-message">
+                메이룸은 단순 개발사가 아닌<br>
+                <span>기술 성공 가능성을 설계하는 전략 파트너</span>입니다.
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Solutions Section -->
+    <section id="solutions" class="solutions">
+        <div class="container">
+            <div class="section-label">Strategic Solutions</div>
+            <h2 class="section-title">전략적 솔루션</h2>
+            <p class="section-description">
+                메이룸은 의료기기 개발의 전 과정에서 기술적 리스크를 최소화하고<br>
+                인허가 성공률을 극대화하는 통합 솔루션을 제공합니다.
+            </p>
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-number">01</div>
+                    <h3 class="solution-title">의료기기 제품화<br>컨설팅 및 개발</h3>
+                    <ul class="solution-list">
+                        <li>초기 아이디어 검증</li>
+                        <li>의료기기 개발 프로세스 설계</li>
+                        <li>규격 기반 제품 설계</li>
+                        <li>양산 최적화 전략 수립</li>
+                    </ul>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-number">02</div>
+                    <h3 class="solution-title">토탈 RA 및<br>인허가 대응</h3>
+                    <ul class="solution-list">
+                        <li>KFDA 인허가 전략 설계</li>
+                        <li>CE MDR / IVDR 대응</li>
+                        <li>기술문서 작성 (DHF, TCF, 위험관리 등)</li>
+                        <li>임상 시험, 성능시험, 안전성 시험 프로토콜 설계</li>
+                        <li>규제기관 협의 지원</li>
+                    </ul>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-number">03</div>
+                    <h3 class="solution-title">정부 R&D<br>전략 컨설팅</h3>
+                    <ul class="solution-list">
+                        <li>과제 기획 및 제안서 작성</li>
+                        <li>선정 전략 설계</li>
+                        <li>수행 관리</li>
+                        <li>최종 평가 대응</li>
+                    </ul>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-number">04</div>
+                    <h3 class="solution-title">기술 고문 및<br>엑셀러레이팅</h3>
+                    <ul class="solution-list">
+                        <li>스타트업 기술 리스크 분석</li>
+                        <li>개발 방향성 전략 설계</li>
+                        <li>기술 문제 사전 방어</li>
+                        <li>개발 기간 단축 전략</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise" class="expertise">
+        <div class="container">
+            <div class="section-label">Core Competencies</div>
+            <h2 class="section-title">핵심 역량</h2>
+            <p class="section-description">
+                30년간 축적된 기술 패턴 인식 능력으로 의료기기 개발의 성공 가능성을 사전에 설계합니다.
+            </p>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">⚡</div>
+                    <h3>전략적 인허가 설계</h3>
+                    <p>
+                        단순 문서 작성이 아닌, 규제 기준을 함께 설계하는 전략적 접근으로 
+                        인허가 성공률을 극대화합니다.
+                    </p>
+                    <div class="expertise-examples">
+                        <h4>대표 수행 사례</h4>
+                        <ul>
+                            <li>국내 최초 의료용 과산화수소 멸균기 인허가</li>
+                            <li>혈당측정기/검사지 임상 및 식약처/IVDD 인허가</li>
+                            <li>GMP 관련 문서 작성</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">⚙️</div>
+                    <h3>무결점 시스템 엔지니어링</h3>
+                    <p>
+                        H/W, F/W, Application S/W, 웹/앱 개발부터 임상시험, 
+                        안전성 시험, 양산 최적화까지 전 과정을 통합 관리합니다.
+                    </p>
+                    <div class="expertise-examples">
+                        <h4>대표 기술 역량</h4>
+                        <ul>
+                            <li>안전성 시험 (IEC 60601-1 ed3.1)</li>
+                            <li>성능 시험, S/W 밸리데이션 시험</li>
+                            <li>양산 구조 설계 및 원가 절감</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">📊</div>
+                    <h3>정부 R&D 비즈니스 아키텍처</h3>
+                    <p>
+                        국책과제 전 과정에 대한 전략적 설계로 
+                        선정률을 높이고 수행 리스크를 최소화합니다.
+                    </p>
+                    <div class="expertise-examples">
+                        <h4>서비스 범위</h4>
+                        <ul>
+                            <li>과제 기획 및 제안서 작성</li>
+                            <li>선정 전략 및 수행 관리</li>
+                            <li>최종 평가 대응 전략</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-label">Portfolio</div>
+            <h2 class="section-title">주요 수행 실적</h2>
+            <p class="section-description">
+                기밀 보호를 위해 개략 성과 중심으로 공개합니다.
+            </p>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-label">Case 01</div>
+                    <h3>고위험군 혈당측정기/검사지</h3>
+                    <ul class="portfolio-achievements">
+                        <li>KFDA 인증 완료</li>
+                        <li>CE IVDD 인증 획득</li>
+                        <li>개발 기간 단축</li>
+                    </ul>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-label">Case 02</div>
+                    <h3>저온 과산화수소 멸균기</h3>
+                    <ul class="portfolio-achievements">
+                        <li>국내 최초 품목허가</li>
+                        <li>원가 절감 설계 적용</li>
+                    </ul>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-label">Case 03</div>
+                    <h3>자동 CPR 장치</h3>
+                    <ul class="portfolio-achievements">
+                        <li>시스템 설계</li>
+                        <li>국책과제 성공 수행</li>
+                    </ul>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-label">Case 04</div>
+                    <h3>스마트 기기 플랫폼</h3>
+                    <ul class="portfolio-achievements">
+                        <li>세계 최초 스마트폰 개발 참여</li>
+                        <li>GPS 기반 서비스 구축</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legacy Section -->
+    <section id="legacy" class="legacy">
+        <div class="container">
+            <div class="section-label">The Legacy</div>
+            <h2 class="section-title">이론이 아닌 실전으로 증명된 30년</h2>
+            <p class="section-description">
+                끊임없는 혁신과 도전으로 쌓아온 기술 역사가 메이룸의 경쟁력입니다.
+            </p>
+            <div class="legacy-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-period">1990년대</div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>대기업 연구소 CDMA 교환기 개발</li>
+                            <li>이동통신사 품질 관리</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">2000년대</div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>세계 최초 임베디드 리눅스 PDA</li>
+                            <li>세계 최초 스마트폰 개발</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">2010년대</div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>GPS 단말기 개발</li>
+                            <li>멀티미디어 디바이스 개발</li>
+                            <li>정부 웹 통합 시스템 구축</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">현재</div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>2등급, 3등급 의료기기 개발 및 인허가 수행</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="legacy-message">
+                <h3>30년 축적된 기술 패턴 인식 능력</h3>
+                <p>기술 성공 가능성을 사전에 설계합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section id="partnership" class="partnership">
+        <div class="container">
+            <div class="section-label">Partnership</div>
+            <h2 class="section-title">우리는 계약자가 아닌<br>성공을 공유하는 파트너입니다.</h2>
+            <div class="partnership-content">
+                <div class="partnership-box">
+                    <h3>협력 대상</h3>
+                    <ul>
+                        <li>혁신 기술 스타트업</li>
+                        <li>메디테크 기업</li>
+                        <li>신규 창업팀</li>
+                    </ul>
+                </div>
+                <div class="partnership-box">
+                    <h3>협력 방식</h3>
+                    <ul>
+                        <li>기술 지분 참여</li>
+                        <li>공동 창업</li>
+                        <li>장기 기술 고문</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="partnership-policy">
+                선별된 프로젝트만 협력합니다.
+            </div>
+        </div>
+    </section>
+
+    <!-- Insight Section -->
+    <section id="insight" class="insight">
+        <div class="container">
+            <div class="section-label">Insight</div>
+            <h2 class="section-title">전문 인사이트</h2>
+            <p class="section-description">
+                의료기기 개발과 인허가에 대한 전문 지식과 경험을 공유합니다.
+            </p>
+            <div class="insight-grid">
+                <div class="insight-card">
+                    <div class="insight-image">📋</div>
+                    <div class="insight-body">
+                        <h3>의료기기 인허가 전략 가이드</h3>
+                        <p>성공적인 인허가를 위한 단계별 전략과 핵심 포인트</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-image">🇪🇺</div>
+                    <div class="insight-body">
+                        <h3>CE MDR 대응 전략</h3>
+                        <p>유럽 의료기기 규정 변화에 따른 효과적인 대응 방법</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-image">🎯</div>
+                    <div class="insight-body">
+                        <h3>정부 과제 성공 전략</h3>
+                        <p>국책 R&D 과제 선정 및 수행의 핵심 노하우</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-image">⚠️</div>
+                    <div class="insight-body">
+                        <h3>의료기기 개발 실패 사례 분석</h3>
+                        <p>흔한 실수와 리스크를 사전에 방어하는 방법</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-header">
+                <div class="section-label">Contact Us</div>
+                <div class="contact-slogan">
+                    귀사의 가능성이 <span>빛(Luum)</span>이 되는 순간까지<br>
+                    메이룸이 함께합니다.
+                </div>
+            </div>
+            <div class="contact-container">
+                <form class="contact-form" onsubmit="return handleSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label">회사명 *</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">담당자명 *</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">이메일 *</label>
+                        <input type="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">전화번호 *</label>
+                        <input type="tel" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">기술 분야 *</label>
+                        <select class="form-select" required>
+                            <option value="">선택해주세요</option>
+                            <option value="medical-device">의료기기 개발</option>
+                            <option value="ra">인허가 컨설팅</option>
+                            <option value="rnd">정부 R&D</option>
+                            <option value="accelerating">기술 고문/엑셀러레이팅</option>
+                            <option value="other">기타</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">프로젝트 단계 *</label>
+                        <select class="form-select" required>
+                            <option value="">선택해주세요</option>
+                            <option value="idea">아이디어 단계</option>
+                            <option value="development">개발 진행 중</option>
+                            <option value="certification">인허가 준비</option>
+                            <option value="production">양산 준비</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">문의 내용 *</label>
+                        <textarea class="form-textarea" required></textarea>
+                    </div>
+                    <div class="form-checkbox-group">
+                        <input type="checkbox" id="nda" class="form-checkbox" required>
+                        <label for="nda">NDA(비밀유지계약) 동의 *</label>
+                    </div>
+                    <button type="submit" class="form-submit">상담 신청하기</button>
+                </form>
+                <div class="contact-info">
+                    <h3>연락처</h3>
+                    <div class="contact-details">
+                        <div class="contact-detail"><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ed9e8281819483ad808c9481989880c38e8280">[email&#160;protected]</a></div>
+                        <div class="contact-detail"><strong>Tel:</strong> 010-3463-7367</div>
+                        <div class="contact-detail"><strong>Address:</strong> 경기도 의왕시</div>
+                    </div>
+                    <div class="security-notice">
+                        🔒 모든 상담은 NDA 기준으로 진행됩니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>MayLuum</h3>
+                    <p>
+                        30년 기술 통찰력으로 의료기기의 성공 확률을 설계합니다.<br>
+                        Medical Device Strategic Consulting Partner
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#legacy">The Legacy</a></li>
+                        <li><a href="#expertise">Expertise</a></li>
+                        <li><a href="#solutions">Solutions</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="/cdn-cgi/l/email-protection#75061a19190c1b3518140c190000185b161a18"><span class="__cf_email__" data-cfemail="4f3c20232336210f222e36233a3a22612c2022">[email&#160;protected]</span></a></li>
+                        <li><a href="tel:010-3463-7367">010-3463-7367</a></li>
+                        <li><a href="#contact">상담 신청</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 (주)메이룸 MayLuum. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el 

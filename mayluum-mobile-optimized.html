@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>메이룸 (MayLuum) | 30년 기술 통찰력으로 의료기기의 성공 확률을 설계합니다</title>
+    <meta name="description" content="의료기기 인허가 컨설팅, 개발 전략 설계, 정부 R&D 컨설팅">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-teal: #3DBAAE;
+            --teal-light: #5DD4C8;
+            --navy-deep: #0A1929;
+            --navy-primary: #152841;
+            --gold-accent: #FFC857;
+            --white: #FFFFFF;
+            --off-white: #F7F9FB;
+            --gray-50: #F8FAFB;
+            --gray-100: #E8ECF1;
+            --gray-300: #B8C5D0;
+            --gray-600: #5A6B7D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: var(--navy-primary);
+            background: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(61, 186, 174, 0.1);
+        }
+
+        .nav.scrolled {
+            box-shadow: 0 4px 20px rgba(10, 25, 41, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: none;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 26px;
+            height: 3px;
+            background: var(--navy-primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 8px 24px rgba(10, 25, 41, 0.15);
+            padding: 0;
+            z-index: 999;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            max-height: 500px;
+            padding: 15px 20px;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mobile-menu a {
+            color: var(--navy-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: block;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mobile-menu .cta-button {
+            background: linear-gradient(135deg, var(--primary-teal), var(--teal-light));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 15px;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #E0F4F3 0%, #FFF8E7 100%);
+            padding: 100px 20px 50px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 200, 87, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 1px solid rgba(61, 186, 174, 0.2);
+            margin-bottom: 25px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-icon {
+            width: 6px;
+            height: 6px;
+            background: var(--primary-teal);
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--navy-deep);
+            line-height: 1.3;
+            margin-bottom: 20px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--primary-teal), var(--teal-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            font-size: 28px;
+            margin-top: 8px;
+        }
+
+        .hero-description {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .hero-cta-primary,
+        .hero-cta-secondary {
+            text-align: center;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta-primary {
+            background: linear-gradient(135deg, var(--primary-teal), var(--teal-light));
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(61, 186, 174, 0.3);
+        }
+
+        .hero-cta-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--navy-primary);
+            border: 2px solid var(--gray-100);
+        }
+
+        .trust-bar {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(61, 186, 174, 0.15);
+        }
+
+        .trust-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--teal-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(61, 186, 174, 0.25);
+        }
+
+        .trust-icon::after {
+            content: '✓';
+            color: var(--white);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .trust-item span {
+            color: var(--navy-primary);
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 20px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-teal);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-teal), var(--teal-light));
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--navy-deep);
+            line-height: 1.3;
+            margin-bottom: 20px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .section-description {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        /* Pain Points */
+        .pain-points {
+            background: var(--white);
+        }
+
+        .pain-grid {
+            display: grid;
+            gap: 12px;
+            margin: 30px 0;
+        }
+
+        .pain-item {
+            background: var(--gray-50);
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-teal);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .pain-item::before {
+            content: '✗ ';
+            color: var(--primary-teal);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .solution-message {
+            background: linear-gradient(135deg, var(--navy-deep), var(--navy-primary));
+            color: var(--white);
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.5;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .solution-message span {
+            color: var(--teal-light);
+        }
+
+        /* Solutions */
+        .solutions {
+            background: linear-gradient(135deg, #E0F4F3 0%, #FFF8E7 100%);
+        }
+
+        .solutions-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .solution-card {
+            background: var(--white);
+            border: 2px solid var(--gray-100);
+            border-radius: 16px;
+            padding: 30px 20px;
+        }
+
+        .solution-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-teal), var(--teal-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .solution-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--navy-deep);
+            margin-bottom: 20px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .solution-list {
+            list-style: none;
+        }
+
+        .solution-list li {
+            padding: 10px 0 10px 25px;
+            color: var(--gray-600);
+            font-size: 14px;
+            position: relative;
+        }
+
+        .solution-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-teal);
+            font-weight: bold;
+        }
+
+        /* Expertise */
+        .expertise {
+            background: var(--white);
+        }
+
+        .expertise-grid {
+            display: grid;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .expertise-card {
+            background: var(--gray-50);
+            padding: 30px 20px;
+            border-radius: 16px;
+            border: 2px solid transparent;
+        }
+
+        .expertise-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--teal-light));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            box-shadow: 0 8px 20px rgba(61, 186, 174, 0.3);
+        }
+
+        .expertise-card h3 {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--navy-deep);
+            margin-bottom: 15px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .expertise-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .expertise-examples {
+            background: rgba(61, 186, 174, 0.06);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(61, 186, 174, 0.1);
+        }
+
+        .expertise-examples h4 {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--primary-teal);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .expertise-examples ul {
+            list-style: none;
+        }
+
+        .expertise-examples li {
+            padding: 8px 0 8px 20px;
+            color: var(--navy-primary);
+            font-size: 13px;
+            position: relative;
+        }
+
+        .expertise-examples li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-teal);
+            font-weight: bold;
+        }
+
+        /* Portfolio */
+        .portfolio {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-primary) 100%);
+            color: var(--white);
+        }
+
+        .portfolio .section-label {
+            color: var(--teal-light);
+        }
+
+        .portfolio .section-title {
+            color: var(--white);
+        }
+
+        .portfolio .section-description {
+            color: var(--gray-300);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px 20px;
+        }
+
+        .portfolio-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 12px;
+            color: var(--gold-accent);
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .portfolio-card h3 {
+            font-size: 20px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--white);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .portfolio-achievements {
+            list-style: none;
+        }
+
+        .portfolio-achievements li {
+            padding: 10px 0 10px 24px;
+            color: var(--gray-300);
+            font-size: 14px;
+            position: relative;
+        }
+
+        .portfolio-achievements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--teal-light);
+            font-weight: bold;
+        }
+
+        /* Legacy */
+        .legacy {
+            background: linear-gradient(135deg, #E0F4F3 0%, #FFF8E7 100%);
+        }
+
+        .legacy-timeline {
+            margin-top: 30px;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+        }
+
+        .timeline-period {
+            font-family: 'Outfit', sans-serif;
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-teal), var(--teal-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 25px 20px;
+            border-radius: 16px;
+            border-left: 4px solid var(--primary-teal);
+            box-shadow: 0 4px 16px rgba(10, 25, 41, 0.06);
+        }
+
+        .timeline-content ul {
+            list-style: none;
+        }
+
+        .timeline-content li {
+            padding: 10px 0 10px 24px;
+            color: var(--gray-600);
+            font-size: 14px;
+            position: relative;
+        }
+
+        .timeline-content li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-teal);
+            font-weight: bold;
+        }
+
+        .legacy-message {
+            background: linear-gradient(135deg, var(--navy-deep), var(--navy-primary));
+            color: var(--white);
+            padding: 35px 20px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .legacy-message h3 {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .legacy-message p {
+            font-size: 16px;
+            color: var(--teal-light);
+            font-weight: 600;
+        }
+
+        /* Partnership */
+        .partnership {
+            background: linear-gradient(135deg, var(--primary-teal) 0%, var(--teal-light) 100%);
+            color: var(--white);
+        }
+
+        .partnership .section-label {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .partnership .section-title {
+            color: var(--white);
+        }
+
+        .partnership-content {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .partnership-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 30px 20px;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .partnership-box h3 {
+            font-size: 20px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .partnership-box ul {
+            list-style: none;
+        }
+
+        .partnership-box li {
+            padding: 12px 0 12px 28px;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .partnership-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .partnership-policy {
+            background: var(--navy-deep);
+            color: var(--white);
+            padding: 25px 20px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 25px;
+            font-size: 17px;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Insight */
+        .insight {
+            background: var(--white);
+        }
+
+        .insight-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .insight-card {
+            background: var(--gray-50);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .insight-image {
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--teal-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .insight-body {
+            padding: 25px 20px;
+        }
+
+        .insight-card h3 {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--navy-deep);
+            margin-bottom: 12px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .insight-card p {
+            color: var(--gray-600);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Contact */
+        .contact {
+            background: linear-gradient(135deg, #E0F4F3 0%, #FFF8E7 100%);
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-slogan {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--navy-deep);
+            line-height: 1.5;
+            margin-bottom: 15px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .contact-slogan .highlight {
+            background: linear-gradient(135deg, var(--primary-teal), var(--teal-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 35px 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(10, 25, 41, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 700;
+            color: var(--navy-deep);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--gray-100);
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--gray-50);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-teal);
+            background: var(--white);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .form-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--primary-teal);
+        }
+
+        .form-checkbox-group label {
+            font-size: 13px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--teal-light));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 20px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--white);
+            border-radius: 16px;
+        }
+
+        .contact-info h3 {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--navy-deep);
+            margin-bottom: 20px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-detail {
+            font-size: 15px;
+            color: var(--gray-600);
+        }
+
+        .contact-detail strong {
+            color: var(--navy-deep);
+            font-weight: 800;
+        }
+
+        .security-notice {
+            background: linear-gradient(135deg, var(--navy-deep), var(--navy-primary));
+            color: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy-deep);
+            color: var(--white);
+            padding: 50px 20px 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--teal-light), var(--primary-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: var(--gray-300);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            color: var(--gray-300);
+            font-size: 12px;
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 769px) {
+            .nav-container {
+                padding: 0 50px;
+                height: 90px;
+            }
+
+            .logo-img {
+                height: 38px;
+            }
+
+            .mobile-menu-toggle {
+                display: none;
+            }
+
+            .nav-menu {
+                display: flex;
+                gap: 45px;
+                align-items: center;
+                list-style: none;
+            }
+
+            .nav-menu a {
+                color: var(--navy-primary);
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 15px;
+                transition: color 0.3s ease;
+            }
+
+            .nav-menu a:hover {
+                color: var(--primary-teal);
+            }
+
+            .nav-menu .cta-button {
+                background: linear-gradient(135deg, var(--primary-teal), var(--teal-light));
+                color: var(--white);
+                padding: 13px 30px;
+                border-radius: 50px;
+            }
+
+            .hero {
+                min-height: 100vh;
+                padding: 140px 50px;
+            }
+
+            .hero-title {
+                font-size: 72px;
+            }
+
+            .hero-title .highlight {
+                font-size: 64px;
+            }
+
+            .hero-description {
+                font-size: 20px;
+            }
+
+            .hero-ctas {
+                flex-direction: row;
+                gap: 20px;
+            }
+
+            .hero-cta-primary,
+            .hero-cta-secondary {
+                padding: 20px 50px;
+                font-size: 18px;
+            }
+
+            .trust-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            section {
+                padding: 120px 50px;
+            }
+
+            .section-title {
+                font-size: 52px;
+            }
+
+            .section-description {
+                font-size: 19px;
+            }
+
+            .pain-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .solution-message {
+                padding: 50px;
+                font-size: 26px;
+            }
+
+            .solutions-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 35px;
+            }
+
+            .solution-card {
+                padding: 45px;
+            }
+
+            .expertise-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
+
+            .expertise-card {
+                padding: 50px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .portfolio-card {
+                padding: 40px;
+            }
+
+            .timeline-item {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 80px;
+                position: relative;
+            }
+
+            .timeline-item::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 16px;
+                height: 16px;
+                background: var(--white);
+                border: 4px solid var(--primary-teal);
+                border-radius: 50%;
+                z-index: 2;
+            }
+
+            .timeline-period {
+                font-size: 60px;
+                text-align: right;
+            }
+
+            .timeline-content {
+                padding: 40px;
+            }
+
+            .legacy-message {
+                padding: 60px;
+            }
+
+            .partnership-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 35px;
+            }
+
+            .insight-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 35px;
+            }
+
+            .contact-form {
+                padding: 60px;
+            }
+
+            .contact-info {
+                padding: 45px;
+            }
+
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr;
+                gap: 60px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .trust-bar {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .solutions-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .insight-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="logo-container">
+                <svg class="logo-img" viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 250 L50 80 L150 180 L250 80 L250 250 L200 250 L200 150 L150 210 L100 150 L100 250 Z" fill="#3DBAAE"/>
+                    <line x1="80" y1="120" x2="220" y2="200" stroke="#3DBAAE" stroke-width="8"/>
+                    <circle cx="180" cy="90" r="25" fill="#FFC857" opacity="0.8">
+                        <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <g stroke="#FFC857" stroke-width="3" opacity="0.6">
+                        <line x1="180" y1="55" x2="180" y2="45"/>
+                        <line x1="215" y1="90" x2="225" y2="90"/>
+                        <line x1="180" y1="125" x2="180" y2="135"/>
+                        <line x1="145" y1="90" x2="135" y2="90"/>
+                        <line x1="205" y1="65" x2="212" y2="58"/>
+                        <line x1="205" y1="115" x2="212" y2="122"/>
+                        <line x1="155" y1="115" x2="148" y2="122"/>
+                        <line x1="155" y1="65" x2="148" y2="58"/>
+                    </g>
+                    <text x="290" y="200" font-family="'Outfit', sans-serif" font-size="140" font-weight="700" fill="#3DBAAE">MayLuum</text>
+                </svg>
+            </a>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="메뉴">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#legacy">The Legacy</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#partnership">Partnership</a></li>
+                <li><a href="#insight">Insight</a></li>
+                <li><a href="#contact" class="cta-button">무료 기술 상담</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#legacy" onclick="toggleMobileMenu()">The Legacy</a></li>
+            <li><a href="#expertise" onclick="toggleMobileMenu()">Expertise</a></li>
+            <li><a href="#solutions" onclick="toggleMobileMenu()">Solutions</a></li>
+            <li><a href="#portfolio" onclick="toggleMobileMenu()">Portfolio</a></li>
+            <li><a href="#partnership" onclick="toggleMobileMenu()">Partnership</a></li>
+            <li><a href="#insight" onclick="toggleMobileMenu()">Insight</a></li>
+            <li><a href="#contact" class="cta-button" onclick="toggleMobileMenu()">무료 기술 상담</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">
+                <div class="badge-icon"></div>
+                <span>Medical Device Strategic Consulting</span>
+            </div>
+            <h1 class="hero-title">
+                30년 기술 통찰력
+                <span class="highlight">의료기기의 성공 확률을 설계합니다</span>
+            </h1>
+            <p class="hero-description">
+                세계 최초 스마트폰 개발부터 고위험 의료기기 인허가까지 메이룸은 기술과 규제를 연결하는 전략적 내비게이터입니다.
+            </p>
+            <div class="hero-ctas">
+                <a href="#contact" class="hero-cta-primary">무료 기술 상담 신청</a>
+                <a href="#partnership" class="hero-cta-secondary">파트너십 문의</a>
+            </div>
+            <div class="trust-bar">
+                <div class="trust-item">
+                    <div class="trust-icon"></div>
+                    <span>30년 기술 리더십</span>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"></div>
+                    <span>3등급 의료기기 개발 및 인허가</span>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"></div>
+                    <span>국책 R&D 성공 수행</span>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"></div>
+                    <span>글로벌 인증 대응 경험</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points -->
+    <section class="pain-points">
+        <div class="section-label">Problems We Solve</div>
+        <h2 class="section-title">이런 문제를 겪고 계십니까?</h2>
+        <div class="pain-grid">
+            <div class="pain-item">인허가 전략 부재</div>
+            <div class="pain-item">개발 완료 후 시험 실패</div>
+            <div class="pain-item">양산 원가 문제</div>
+            <div class="pain-item">정부 과제 선정 실패</div>
+            <div class="pain-item">RA 문서 작성 부담</div>
+            <div class="pain-item">기술 방향성 불확실</div>
+            <div class="pain-item">기간내 개발 및 품질관리 실패</div>
+        </div>
+        <div class="solution-message">
+            메이룸은 단순 개발사가 아닌 <span>기술 성공 가능성을 설계하는 전략 파트너</span>입니다.
+        </div>
+    </section>
+
+    <!-- Solutions -->
+    <section id="solutions" class="solutions">
+        <div class="section-label">Strategic Solutions</div>
+        <h2 class="section-title">전략적 솔루션</h2>
+        <p class="section-description">
+            메이룸은 의료기기 개발의 전 과정에서 기술적 리스크를 최소화하고 인허가 성공률을 극대화하는 통합 솔루션을 제공합니다.
+        </p>
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <div class="solution-number">01</div>
+                <h3 class="solution-title">의료기기 제품화 컨설팅 및 개발</h3>
+                <ul class="solution-list">
+                    <li>초기 아이디어 검증</li>
+                    <li>의료기기 개발 프로세스 설계</li>
+                    <li>규격 기반 제품 설계</li>
+                    <li>양산 최적화 전략 수립</li>
+                </ul>
+            </div>
+            <div class="solution-card">
+                <div class="solution-number">02</div>
+                <h3 class="solution-title">토탈 RA 및 인허가 대응</h3>
+                <ul class="solution-list">
+                    <li>KFDA 인허가 전략 설계</li>
+                    <li>CE MDR / IVDR 대응</li>
+                    <li>기술문서 작성 (DHF, TCF 등)</li>
+                    <li>임상/성능/안전성 시험 프로토콜 설계</li>
+                    <li>규제기관 협의 지원</li>
+                </ul>
+            </div>
+            <div class="solution-card">
+                <div class="solution-number">03</div>
+                <h3 class="solution-title">정부 R&D 전략 컨설팅</h3>
+                <ul class="solution-list">
+                    <li>과제 기획 및 제안서 작성</li>
+                    <li>선정 전략 설계</li>
+                    <li>수행 관리</li>
+                    <li>최종 평가 대응</li>
+                </ul>
+            </div>
+            <div class="solution-card">
+                <div class="solution-number">04</div>
+                <h3 class="solution-title">기술 고문 및 엑셀러레이팅</h3>
+                <ul class="solution-list">
+                    <li>스타트업 기술 리스크 분석</li>
+                    <li>개발 방향성 전략 설계</li>
+                    <li>기술 문제 사전 방어</li>
+                    <li>개발 기간 단축 전략</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise -->
+    <section id="expertise" class="expertise">
+        <div class="section-label">Core Competencies</div>
+        <h2 class="section-title">핵심 역량</h2>
+        <p class="section-description">
+            30년간 축적된 기술 패턴 인식 능력으로 의료기기 개발의 성공 가능성을 사전에 설계합니다.
+        </p>
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <div class="expertise-icon">⚡</div>
+                <h3>전략적 인허가 설계</h3>
+                <p>단순 문서 작성이 아닌, 규제 기준을 함께 설계하는 전략적 접근으로 인허가 성공률을 극대화합니다.</p>
+                <div class="expertise-examples">
+                    <h4>대표 수행 사례</h4>
+                    <ul>
+                        <li>국내 최초 의료용 과산화수소 멸균기 인허가</li>
+                        <li>혈당측정기/검사지 임상 및 식약처/IVDD 인허가</li>
+                        <li>GMP 관련 문서 작성</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="expertise-card">
+                <div class="expertise-icon">⚙️</div>
+                <h3>무결점 시스템 엔지니어링</h3>
+                <p>H/W, F/W, Application S/W, 웹/앱 개발부터 임상시험, 안전성 시험, 양산 최적화까지 전 과정을 통합 관리합니다.</p>
+                <div class="expertise-examples">
+                    <h4>대표 기술 역량</h4>
+                    <ul>
+                        <li>안전성 시험 (IEC 60601-1 ed3.1)</li>
+                        <li>성능 시험, S/W 밸리데이션 시험</li>
+                        <li>양산 구조 설계 및 원가 절감</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="expertise-card">
+                <div class="expertise-icon">📊</div>
+                <h3>정부 R&D 비즈니스 아키텍처</h3>
+                <p>국책과제 전 과정에 대한 전략적 설계로 선정률을 높이고 수행 리스크를 최소화합니다.</p>
+                <div class="expertise-examples">
+                    <h4>서비스 범위</h4>
+                    <ul>
+                        <li>과제 기획 및 제안서 작성</li>
+                        <li>선정 전략 및 수행 관리</li>
+                        <li>최종 평가 대응 전략</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="portfolio">
+        <div class="section-label">Portfolio</div>
+        <h2 class="section-title">주요 수행 실적</h2>
+        <p class="section-description">기밀 보호를 위해 개략 성과 중심으로 공개합니다.</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="portfolio-label">Case 01</div>
+                <h3>고위험군 혈당측정기/검사지</h3>
+                <ul class="portfolio-achievements">
+                    <li>KFDA 인증 완료</li>
+                    <li>CE IVDD 인증 획득</li>
+                    <li>개발 기간 단축</li>
+                </ul>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-label">Case 02</div>
+                <h3>저온 과산화수소 멸균기</h3>
+                <ul class="portfolio-achievements">
+                    <li>국내 최초 품목허가</li>
+                    <li>원가 절감 설계 적용</li>
+                </ul>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-label">Case 03</div>
+                <h3>자동 CPR 장치</h3>
+                <ul class="portfolio-achievements">
+                    <li>시스템 설계</li>
+                    <li>국책과제 성공 수행</li>
+                </ul>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-label">Case 04</div>
+                <h3>스마트 기기 플랫폼</h3>
+                <ul class="portfolio-achievements">
+                    <li>세계 최초 스마트폰 개발 참여</li>
+                    <li>GPS 기반 서비스 구축</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legacy -->
+    <section id="legacy" class="legacy">
+        <div class="section-label">The Legacy</div>
+        <h2 class="section-title">이론이 아닌 실전으로 증명된 30년</h2>
+        <p class="section-description">끊임없는 혁신과 도전으로 쌓아온 기술 역사가 메이룸의 경쟁력입니다.</p>
+        <div class="legacy-timeline">
+            <div class="timeline-item">
+                <div class="timeline-period">1990s</div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>대기업 연구소 CDMA 교환기 개발</li>
+                        <li>이동통신사 품질 관리</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-period">2000s</div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>세계 최초 임베디드 리눅스 PDA</li>
+                        <li>세계 최초 스마트폰 개발</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-period">2010s</div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>GPS 단말기 개발</li>
+                        <li>멀티미디어 디바이스 개발</li>
+                        <li>정부 웹 통합 시스템 구축</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-period">Now</div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>2등급, 3등급 의료기기 개발 및 인허가 수행</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="legacy-message">
+            <h3>30년 축적된 기술 패턴 인식 능력</h3>
+            <p>기술 성공 가능성을 사전에 설계합니다</p>
+        </div>
+    </section>
+
+    <!-- Partnership -->
+    <section id="partnership" class="partnership">
+        <div class="section-label">Partnership</div>
+        <h2 class="section-title">우리는 계약자가 아닌 성공을 공유하는 파트너입니다</h2>
+        <div class="partnership-content">
+            <div class="partnership-box">
+                <h3>협력 대상</h3>
+                <ul>
+                    <li>혁신 기술 스타트업</li>
+                    <li>메디테크 기업</li>
+                    <li>신규 창업팀</li>
+                </ul>
+            </div>
+            <div class="partnership-box">
+                <h3>협력 방식</h3>
+                <ul>
+                    <li>기술 지분 참여</li>
+                    <li>공동 창업</li>
+                    <li>장기 기술 고문</li>
+                </ul>
+            </div>
+        </div>
+        <div class="partnership-policy">선별된 프로젝트만 협력합니다</div>
+    </section>
+
+    <!-- Insight -->
+    <section id="insight" class="insight">
+        <div class="section-label">Insight</div>
+        <h2 class="section-title">전문 인사이트</h2>
+        <p class="section-description">의료기기 개발과 인허가에 대한 전문 지식과 경험을 공유합니다.</p>
+        <div class="insight-grid">
+            <div class="insight-card">
+                <div class="insight-image">📋</div>
+                <div class="insight-body">
+                    <h3>의료기기 인허가 전략 가이드</h3>
+                    <p>성공적인 인허가를 위한 단계별 전략과 핵심 포인트</p>
+                </div>
+            </div>
+            <div class="insight-card">
+                <div class="insight-image">🇪🇺</div>
+                <div class="insight-body">
+                    <h3>CE MDR 대응 전략</h3>
+                    <p>유럽 의료기기 규정 변화에 따른 효과적인 대응 방법</p>
+                </div>
+            </div>
+            <div class="insight-card">
+                <div class="insight-image">🎯</div>
+                <div class="insight-body">
+                    <h3>정부 과제 성공 전략</h3>
+                    <p>국책 R&D 과제 선정 및 수행의 핵심 노하우</p>
+                </div>
+            </div>
+            <div class="insight-card">
+                <div class="insight-image">⚠️</div>
+                <div class="insight-body">
+                    <h3>의료기기 개발 실패 사례 분석</h3>
+                    <p>흔한 실수와 리스크를 사전에 방어하는 방법</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="contact-header">
+            <div class="section-label">Contact Us</div>
+            <div class="contact-slogan">
+                귀사의 가능성이 <span class="highlight">빛(Luum)</span>이 되는 순간까지<br>메이룸이 함께합니다
+            </div>
+        </div>
+        <form class="contact-form" onsubmit="return handleSubmit(event)">
+            <div class="form-group">
+                <label class="form-label">회사명 *</label>
+                <input type="text" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">담당자명 *</label>
+                <input type="text" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">이메일 *</label>
+                <input type="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">전화번호 *</label>
+                <input type="tel" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">기술 분야 *</label>
+                <select class="form-select" required>
+                    <option value="">선택해주세요</option>
+                    <option value="medical-device">의료기기 개발</option>
+                    <option value="ra">인허가 컨설팅</option>
+                    <option value="rnd">정부 R&D</option>
+                    <option value="accelerating">기술 고문/엑셀러레이팅</option>
+                    <option value="other">기타</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">프로젝트 단계 *</label>
+                <select class="form-select" required>
+                    <option value="">선택해주세요</option>
+                    <option value="idea">아이디어 단계</option>
+                    <option value="development">개발 진행 중</option>
+                    <option value="certification">인허가 준비</option>
+                    <option value="production">양산 준비</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">문의 내용 *</label>
+                <textarea class="form-textarea" required></textarea>
+            </div>
+            <div class="form-checkbox-group">
+                <input type="checkbox" id="nda" class="form-checkbox" required>
+                <label for="nda">NDA(비밀유지계약) 동의 *</label>
+            </div>
+            <button type="submit" class="form-submit">상담 신청하기</button>
+        </form>
+        <div class="contact-info">
+            <h3>연락처</h3>
+            <div class="contact-details">
+                <div class="contact-detail"><strong>Email:</strong> sollyn@mayluum.com</div>
+                <div class="contact-detail"><strong>Tel:</strong> 010-3463-7367</div>
+                <div class="contact-detail"><strong>Address:</strong> 경기도 의왕시</div>
+            </div>
+            <div class="security-notice">🔒 모든 상담은 NDA 기준으로 진행됩니다</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>MayLuum</h3>
+                <p>30년 기술 통찰력으로 의료기기의 성공 확률을 설계합니다.<br>Medical Device Strategic Consulting Partner</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#legacy">The Legacy</a></li>
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:sollyn@mayluum.com">sollyn@mayluum.com</a></li>
+                    <li><a href="tel:010-3463-7367">010-3463-7367</a></li>
+                    <li><a href="#contact">상담 신청</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2025 (주)메이룸 MayLuum. All rights reserved.</div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('상담 신청이 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+            event.target.reset();
+            return false;
+        }
+
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
